@@ -103,8 +103,9 @@ client.on("message", async message => {
 				const units = userState.data.logInfo?.responsestring.LinkInfo.ListLandUnit._text.split(",");
 
 				if(option > 0 && option <= units!.length) {
-					const response = "You selected option: " + units![option - 1];
-					client.sendMessage(message.from, response);
+					const unitSelected = units![option - 1];
+					userState.data.transaction!.receiveUnit = unitSelected;
+					client.sendMessage(message.from, "You selected option: " + unitSelected);
 					break;
 				}
 				client.sendMessage(message.from, "Invalid option. Please enter a valid option number.")
